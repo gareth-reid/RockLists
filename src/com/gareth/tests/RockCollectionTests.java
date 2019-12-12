@@ -56,6 +56,13 @@ public class RockCollectionTests {
     }
 
     @Test
+    public void lastTest(){
+        RockCollection<String> rockArrayList = stringList();
+        String last = rockArrayList.last();
+        Assert.assertEquals("Reid", last);
+    }
+
+    @Test
     public void reverseTest(){
         RockCollection<String> rockArrayList = stringList();
         List<String> reversed = rockArrayList.reverse();

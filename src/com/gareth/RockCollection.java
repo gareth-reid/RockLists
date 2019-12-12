@@ -73,6 +73,10 @@ public class RockCollection<T extends Comparable<T>> implements Collection<T> {
         return _list.stream().findFirst().get();
                 //.collect(Collectors.<T>toList());
     }
+    public T last() {
+        List<T> list = (List<T>)_list;
+        return list.get(_list.size() - 1);
+    }
     //##############################################
 
     @Override
