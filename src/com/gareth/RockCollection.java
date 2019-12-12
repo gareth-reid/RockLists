@@ -78,7 +78,7 @@ public class RockCollection<T extends Comparable<T>> implements Collection<T> {
         return list.get(_list.size() - 1);
     }
     //##############################################
-
+    //Re-implement existing methods
     @Override
     public int size() {
         return _list.size();
@@ -128,26 +128,29 @@ public class RockCollection<T extends Comparable<T>> implements Collection<T> {
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        return false;
+        return _list.containsAll(c);
     }
 
     @Override
     public boolean addAll(Collection<? extends T> c) {
-        return false;
+        _list.addAll(c);
+        return true;
     }
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        return false;
+        _list.removeAll(c);
+        return true;
     }
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        return false;
+        _list.retainAll(c);
+        return true;
     }
 
     @Override
     public void clear() {
-        _list = new LinkedList<T>();
+        _list.clear();
     }
 }
