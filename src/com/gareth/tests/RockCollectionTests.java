@@ -1,5 +1,6 @@
 package com.gareth.tests;
 
+import com.gareth.CollectionImplementation;
 import com.gareth.RockCollection;
 import org.junit.Assert;
 import org.junit.Test;
@@ -89,7 +90,7 @@ public class RockCollectionTests {
 
     @Test
     public void toVectorTest(){
-        RockCollection<String> rockArrayList = stringList();
+        RockCollection<String> rockArrayList = stringVector();
         Vector vector = rockArrayList.toVector();
         Assert.assertEquals(3, vector.size());
     }
@@ -101,8 +102,68 @@ public class RockCollectionTests {
         Assert.assertEquals(3, arrayList.length);
     }
 
+    @Test
+    public void toLinkedListTest(){
+        RockCollection<String> rockArrayList = stringList();
+        LinkedList linkedList = rockArrayList.toLinkedList();
+        Assert.assertEquals(3, linkedList.size());
+    }
+
+    @Test
+    public void toHashSetTest(){
+        RockCollection<String> rockArrayList = stringSet();
+        HashSet hashSet = rockArrayList.toHashSet();
+        Assert.assertEquals(3, hashSet.size());
+    }
+
+    @Test
+    public void toTreeSetTest(){
+        RockCollection<String> rockArrayList = stringTreeSet();
+        TreeSet treeSet = rockArrayList.toTreeSet();
+        Assert.assertEquals(3, treeSet.size());
+    }
+
+    @Test
+    public void toStackTest(){
+        RockCollection<String> rockArrayList = stringStack();
+        Stack stack = rockArrayList.toStack();
+        Assert.assertEquals(3, stack.size());
+    }
+
     public RockCollection<String> stringList() {
-        RockCollection<String> rockArrayList = new RockCollection<String>();
+        RockCollection<String> rockArrayList = new RockCollection<String>(CollectionImplementation.List);
+        rockArrayList.add("Gareth");
+        rockArrayList.add("John");
+        rockArrayList.add("Reid");
+        return rockArrayList;
+    }
+
+    public RockCollection<String> stringVector() {
+        RockCollection<String> rockArrayList = new RockCollection<String>(CollectionImplementation.Vector);
+        rockArrayList.add("Gareth");
+        rockArrayList.add("John");
+        rockArrayList.add("Reid");
+        return rockArrayList;
+    }
+
+    public RockCollection<String> stringSet() {
+        RockCollection<String> rockArrayList = new RockCollection<String>(CollectionImplementation.Set);
+        rockArrayList.add("Gareth");
+        rockArrayList.add("John");
+        rockArrayList.add("Reid");
+        return rockArrayList;
+    }
+
+    public RockCollection<String> stringStack() {
+        RockCollection<String> rockArrayList = new RockCollection<String>(CollectionImplementation.Stack);
+        rockArrayList.add("Gareth");
+        rockArrayList.add("John");
+        rockArrayList.add("Reid");
+        return rockArrayList;
+    }
+
+    public RockCollection<String> stringTreeSet() {
+        RockCollection<String> rockArrayList = new RockCollection<String>(CollectionImplementation.Tree);
         rockArrayList.add("Gareth");
         rockArrayList.add("John");
         rockArrayList.add("Reid");
@@ -110,7 +171,7 @@ public class RockCollectionTests {
     }
 
     public RockCollection<String> stringListUnordered() {
-        RockCollection<String> rockArrayList = new RockCollection<String>();
+        RockCollection<String> rockArrayList = new RockCollection<String>(CollectionImplementation.List);
         rockArrayList.add("Miller");
         rockArrayList.add("Finn");
         rockArrayList.add("Reid");
@@ -118,7 +179,7 @@ public class RockCollectionTests {
     }
 
     public RockCollection<Double> doubleList() {
-        RockCollection<Double> rockArrayList = new RockCollection<Double>();
+        RockCollection<Double> rockArrayList = new RockCollection<Double>(CollectionImplementation.List);
         rockArrayList.add(11.0);
         rockArrayList.add(6.0);
         rockArrayList.add(22.0);
@@ -126,7 +187,7 @@ public class RockCollectionTests {
     }
 
     public RockCollection<Integer> intList() {
-        RockCollection<Integer> rockArrayList = new RockCollection<Integer>();
+        RockCollection<Integer> rockArrayList = new RockCollection<Integer>(CollectionImplementation.List);
         rockArrayList.add(11);
         rockArrayList.add(6);
         rockArrayList.add(22);

@@ -1,14 +1,39 @@
 package com.gareth;
 
+import com.sun.jmx.remote.internal.ArrayQueue;
+
 import java.math.BigDecimal;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-//Author: Gareth Reid
-
 public class RockCollection<T extends Comparable<T>> implements Collection<T> {
-    private Collection<T> _list = new Vector<T>();
+    private Collection<T> _list;
+    public RockCollection(CollectionImplementation implementation){
+        switch (implementation) {
+            case List:
+                _list = new LinkedList<>();
+                break;
+            case Vector:
+                _list = new Vector<>();
+                break;
+            case Set:
+                _list = new HashSet<>();
+                break;
+            case Map:
+                //_list = new HashMap<>();
+                break;
+            case Tree:
+                _list = new TreeSet<>();
+                break;
+            case Queue:
+                //_list = new ArrayQueue;
+                break;
+            case Stack:
+                _list = new Stack<>();
+                break;
+        }
+    }
 
     //###########Custom extension methods###########
     public T find(Predicate<T> predicate) {
@@ -55,7 +80,6 @@ public class RockCollection<T extends Comparable<T>> implements Collection<T> {
 
     public List<T> minus(RockCollection<T> listToMinus) {
         List<T> list = (List<T>)_list;
-        int total = 0;
         listToMinus.forEach(list::remove);
         return list;
     }
@@ -73,10 +97,38 @@ public class RockCollection<T extends Comparable<T>> implements Collection<T> {
         return _list.stream().findFirst().get();
                 //.collect(Collectors.<T>toList());
     }
+
     public T last() {
         List<T> list = (List<T>)_list;
         return list.get(_list.size() - 1);
     }
+
+    //##############################################
+    //Transform methods
+    public List<T> toList() {
+        return (List<T>)_list;
+    }
+
+    public Vector<T> toVector() {
+        return (Vector<T>)_list;
+    }
+
+    public LinkedList<T> toLinkedList() {
+        return (LinkedList<T>)_list;
+    }
+
+    public HashSet<T> toHashSet() {
+        return (HashSet<T>)_list;
+    }
+
+    public TreeSet<T> toTreeSet() {
+        return (TreeSet<T>)_list;
+    }
+
+    public Stack<T> toStack() {
+        return (Stack<T>)_list;
+    }
+
     //##############################################
     //Re-implement existing methods
     @Override
@@ -108,14 +160,6 @@ public class RockCollection<T extends Comparable<T>> implements Collection<T> {
     @Override
     public <T1> T1[] toArray(T1[] a) {
         return null;
-    }
-
-    public List<T> toList() {
-        return (List<T>)_list;
-    }
-
-    public Vector<T> toVector() {
-        return (Vector<T>)_list;
     }
 
     @Override
