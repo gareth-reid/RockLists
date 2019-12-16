@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 //Author: Gareth Reid
 
 public class RockCollection<T extends Comparable<T>> implements Collection<T> {
-    private Collection<T> _list = new ArrayList<T>();
+    private Collection<T> _list = new Vector<T>();
 
     //###########Custom extension methods###########
     public T find(Predicate<T> predicate) {
@@ -112,6 +112,10 @@ public class RockCollection<T extends Comparable<T>> implements Collection<T> {
 
     public List<T> toList() {
         return (List<T>)_list;
+    }
+
+    public Vector<T> toVector() {
+        return (Vector<T>)_list;
     }
 
     @Override

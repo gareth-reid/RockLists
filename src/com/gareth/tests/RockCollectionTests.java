@@ -4,10 +4,7 @@ import com.gareth.RockCollection;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 //Author: Gareth Reid
 
@@ -81,6 +78,27 @@ public class RockCollectionTests {
         RockCollection<Double> rockArrayList = doubleList();
         Double average = rockArrayList.average();
         Assert.assertEquals((Double)13.0, average);
+    }
+
+    @Test
+    public void toListTest(){
+        RockCollection<String> rockArrayList = stringList();
+        List list = rockArrayList.toList();
+        Assert.assertEquals(3, list.size());
+    }
+
+    @Test
+    public void toVectorTest(){
+        RockCollection<String> rockArrayList = stringList();
+        Vector vector = rockArrayList.toVector();
+        Assert.assertEquals(3, vector.size());
+    }
+
+    @Test
+    public void toArrayTest(){
+        RockCollection<String> rockArrayList = stringList();
+        Object[] arrayList = rockArrayList.toArray(); //will throw exception if not array
+        Assert.assertEquals(3, arrayList.length);
     }
 
     public RockCollection<String> stringList() {
