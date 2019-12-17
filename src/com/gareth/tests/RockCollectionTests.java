@@ -34,116 +34,146 @@ public class RockCollectionTests {
 
     @Test
     public void findTest(){
-        RockCollection<String> rockArrayList = stringList();
-        String found = rockArrayList.find(str -> str.equals("Gareth"));
+        RockCollection<String> rockCollection = stringList();
+        String found = rockCollection.find(str -> str.equals("Gareth"));
         Assert.assertEquals("Gareth", found);
     }
 
     @Test
     public void findAllTest(){
-        RockCollection<String> rockArrayList = stringList();
-        List<String> found = rockArrayList.findAll(str -> str.contains("e"));
+        RockCollection<String> rockCollection = stringList();
+        List<String> found = rockCollection.findAll(str -> str.contains("e"));
         Assert.assertEquals(2, found.size());
     }
 
     @Test
     public void firstTest(){
-        RockCollection<String> rockArrayList = stringList();
-        String first = rockArrayList.first();
+        RockCollection<String> rockCollection = stringList();
+        String first = rockCollection.first();
         Assert.assertEquals("Gareth", first);
     }
 
     @Test
     public void lastTest(){
-        RockCollection<String> rockArrayList = stringList();
-        String last = rockArrayList.last();
+        RockCollection<String> rockCollection = stringList();
+        String last = rockCollection.last();
         Assert.assertEquals("Reid", last);
     }
 
     @Test
     public void reverseTest(){
-        RockCollection<String> rockArrayList = stringList();
-        List<String> reversed = rockArrayList.reverse();
+        RockCollection<String> rockCollection = stringList();
+        List<String> reversed = rockCollection.reverse();
         Assert.assertEquals("Reid", reversed.get(0));
     }
 
     @Test
     public void sumTest(){
-        RockCollection<Integer> rockArrayList = intList();
-        int sumTotal = rockArrayList.sum();
+        RockCollection<Integer> rockCollection = intList();
+        int sumTotal = rockCollection.sum();
         Assert.assertEquals(39, sumTotal);
     }
 
     @Test
     public void averageTest(){
-        RockCollection<Double> rockArrayList = doubleList();
-        Double average = rockArrayList.average();
+        RockCollection<Double> rockCollection = doubleList();
+        Double average = rockCollection.average();
         Assert.assertEquals((Double)13.0, average);
     }
 
     @Test
     public void toListTest(){
-        RockCollection<String> rockArrayList = stringList();
-        List list = rockArrayList.toList();
+        RockCollection<String> rockCollection = stringList();
+        List<String> list = rockCollection.toList();
         Assert.assertEquals(3, list.size());
     }
 
     @Test
     public void toVectorTest(){
-        RockCollection<String> rockArrayList = stringVector();
-        Vector vector = rockArrayList.toVector();
+        RockCollection<String> rockCollection = stringVector();
+        Vector<String> vector = rockCollection.toVector();
         Assert.assertEquals(3, vector.size());
     }
 
     @Test
     public void toArrayTest(){
-        RockCollection<String> rockArrayList = stringList();
-        Object[] arrayList = rockArrayList.toArray(); //will throw exception if not array
+        RockCollection<String> rockCollection = stringList();
+        Object[] arrayList = rockCollection.toArray(); //will throw exception if not array
         Assert.assertEquals(3, arrayList.length);
     }
 
     @Test
     public void toLinkedListTest(){
-        RockCollection<String> rockArrayList = stringList();
-        LinkedList linkedList = rockArrayList.toLinkedList();
+        RockCollection<String> rockCollection = stringList();
+        LinkedList<String> linkedList = rockCollection.toLinkedList();
         Assert.assertEquals(3, linkedList.size());
     }
 
     @Test
     public void toHashSetTest(){
-        RockCollection<String> rockArrayList = stringSet();
-        HashSet hashSet = rockArrayList.toHashSet();
+        RockCollection<String> rockCollection = stringSet();
+        HashSet<String> hashSet = rockCollection.toHashSet();
         Assert.assertEquals(3, hashSet.size());
     }
 
     @Test
     public void toTreeSetTest(){
-        RockCollection<String> rockArrayList = stringTreeSet();
-        TreeSet treeSet = rockArrayList.toTreeSet();
-        Assert.assertEquals(3, treeSet.size());
+        RockCollection<String> rockCollection = stringTreeSet();
+        TreeSet<String> treeSet = rockCollection.toTreeSet();
+        System.out.println(treeSet);
+        System.out.println(treeSet.headSet("Miller"));
+        System.out.println(treeSet.tailSet("Miller"));
+        Assert.assertEquals(6, treeSet.size());
     }
 
     @Test
     public void toStackTest(){
-        RockCollection<String> rockArrayList = stringStack();
-        Stack stack = rockArrayList.toStack();
+        RockCollection<String> rockCollection = stringStack();
+        Stack<String> stack = rockCollection.toStack();
         Assert.assertEquals(3, stack.size());
     }
 
+    @Test
+    public void toQueueTest(){
+        RockCollection<String> rockCollection = stringList();
+        Queue<String> queue = rockCollection.toQueue();
+        Assert.assertEquals(3, queue.size());
+    }
+
+    @Test
+    public void stackOperateTest(){
+        RockCollection<String> rockCollection = stringStack();
+        Stack<String> stack = rockCollection.toStack();
+        Assert.assertEquals("Reid", stack.pop());
+        stack.push("Mr");
+        Assert.assertEquals("Mr", stack.pop());
+    }
+
+    @Test
+    public void queueOperateTest(){
+        RockCollection<String> rockCollection = stringList();
+        Queue<String> queue = rockCollection.toQueue();
+        Assert.assertEquals("Gareth", queue.peek());
+        Assert.assertEquals("Gareth", queue.poll());
+        queue.add("(Ret.)");
+        Assert.assertEquals("John", queue.poll());
+
+    }
+
     public RockCollection<String> stringList() {
-        RockCollection<String> rockArrayList = new RockCollection<String>(CollectionImplementation.List);
-        rockArrayList.add("Gareth");
-        rockArrayList.add("John");
-        rockArrayList.add("Reid");
-        return rockArrayList;
+        RockCollection<String> rockCollection = new RockCollection<String>(CollectionImplementation.List);
+        rockCollection.add("Gareth");
+        rockCollection.add("John");
+        rockCollection.add("Reid");
+        return rockCollection;
     }
 
     public RockCollection<String> stringVector() {
-        RockCollection<String> rockArrayList = new RockCollection<String>(CollectionImplementation.Vector);
-        rockArrayList.add("Gareth");
-        rockArrayList.add("John");
-        rockArrayList.add("Reid");
-        return rockArrayList;
+        RockCollection<String> rockCollectionVector = new RockCollection<String>(CollectionImplementation.Vector);
+        rockCollectionVector.add("Gareth");
+        rockCollectionVector.add("John");
+        rockCollectionVector.add("Reid");
+        return rockCollectionVector;
     }
 
     public RockCollection<String> stringSet() {
@@ -155,42 +185,45 @@ public class RockCollectionTests {
     }
 
     public RockCollection<String> stringStack() {
-        RockCollection<String> rockArrayList = new RockCollection<String>(CollectionImplementation.Stack);
-        rockArrayList.add("Gareth");
-        rockArrayList.add("John");
-        rockArrayList.add("Reid");
-        return rockArrayList;
+        RockCollection<String> rockCollectionStack = new RockCollection<String>(CollectionImplementation.Stack);
+        rockCollectionStack.add("Gareth");
+        rockCollectionStack.add("John");
+        rockCollectionStack.add("Reid");
+        return rockCollectionStack;
     }
 
     public RockCollection<String> stringTreeSet() {
-        RockCollection<String> rockArrayList = new RockCollection<String>(CollectionImplementation.Tree);
-        rockArrayList.add("Gareth");
-        rockArrayList.add("John");
-        rockArrayList.add("Reid");
-        return rockArrayList;
+        RockCollection<String> rockCollectionTree = new RockCollection<String>(CollectionImplementation.Tree);
+        rockCollectionTree.add("Malcolm");
+        rockCollectionTree.add("Carol");
+        rockCollectionTree.add("Morgan");
+        rockCollectionTree.add("Carl");
+        rockCollectionTree.add("Gareth");
+        rockCollectionTree.add("Miller");
+        return rockCollectionTree;
     }
 
     public RockCollection<String> stringListUnordered() {
-        RockCollection<String> rockArrayList = new RockCollection<String>(CollectionImplementation.List);
-        rockArrayList.add("Miller");
-        rockArrayList.add("Finn");
-        rockArrayList.add("Reid");
-        return rockArrayList;
+        RockCollection<String> rockCollectionListUnordered = new RockCollection<String>(CollectionImplementation.List);
+        rockCollectionListUnordered.add("Miller");
+        rockCollectionListUnordered.add("Finn");
+        rockCollectionListUnordered.add("Reid");
+        return rockCollectionListUnordered;
     }
 
     public RockCollection<Double> doubleList() {
-        RockCollection<Double> rockArrayList = new RockCollection<Double>(CollectionImplementation.List);
-        rockArrayList.add(11.0);
-        rockArrayList.add(6.0);
-        rockArrayList.add(22.0);
-        return rockArrayList;
+        RockCollection<Double> rockCollectionDouble = new RockCollection<Double>(CollectionImplementation.List);
+        rockCollectionDouble.add(11.0);
+        rockCollectionDouble.add(6.0);
+        rockCollectionDouble.add(22.0);
+        return rockCollectionDouble;
     }
 
     public RockCollection<Integer> intList() {
-        RockCollection<Integer> rockArrayList = new RockCollection<Integer>(CollectionImplementation.List);
-        rockArrayList.add(11);
-        rockArrayList.add(6);
-        rockArrayList.add(22);
-        return rockArrayList;
+        RockCollection<Integer> rockCollectionInteger = new RockCollection<Integer>(CollectionImplementation.List);
+        rockCollectionInteger.add(11);
+        rockCollectionInteger.add(6);
+        rockCollectionInteger.add(22);
+        return rockCollectionInteger;
     }
 }

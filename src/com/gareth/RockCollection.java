@@ -129,6 +129,10 @@ public class RockCollection<T extends Comparable<T>> implements Collection<T> {
         return (Stack<T>)_list;
     }
 
+    public Queue<T> toQueue() {
+        return (Queue<T>)_list;
+    }
+
     //##############################################
     //Re-implement existing methods
     @Override
