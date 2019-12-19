@@ -157,7 +157,35 @@ public class RockCollectionTests {
         Assert.assertEquals("Gareth", queue.poll());
         queue.add("(Ret.)");
         Assert.assertEquals("John", queue.poll());
+    }
 
+    @Test
+    public void secondTest(){
+        RockCollection<String> rockCollection = stringList();
+        String second = rockCollection.second();
+        Assert.assertEquals("John", second);
+    }
+
+    @Test
+    public void secondLastTest(){
+        RockCollection<String> rockCollection = stringListEven();
+        String secondLast = rockCollection.secondLast();
+        Assert.assertEquals("Reid", secondLast);
+    }
+
+    @Test
+    public void middleOddNumberInListTest(){
+        RockCollection<String> rockCollection = stringList();
+        List<String> middleOdd = rockCollection.middle();
+        Assert.assertEquals("John", middleOdd.get(0));
+    }
+
+    @Test
+    public void middleEvenNumberInListTest(){
+        RockCollection<String> rockCollection = stringListEven();
+        List<String> middleOdd = rockCollection.middle();
+        Assert.assertEquals("John", middleOdd.get(0));
+        Assert.assertEquals("Reid", middleOdd.get(1));
     }
 
     public RockCollection<String> stringList() {
@@ -165,6 +193,15 @@ public class RockCollectionTests {
         rockCollection.add("Gareth");
         rockCollection.add("John");
         rockCollection.add("Reid");
+        return rockCollection;
+    }
+
+    public RockCollection<String> stringListEven() {
+        RockCollection<String> rockCollection = new RockCollection<String>(CollectionImplementation.List);
+        rockCollection.add("Gareth");
+        rockCollection.add("John");
+        rockCollection.add("Reid");
+        rockCollection.add("Captain");
         return rockCollection;
     }
 
@@ -226,4 +263,6 @@ public class RockCollectionTests {
         rockCollectionInteger.add(22);
         return rockCollectionInteger;
     }
+
+
 }

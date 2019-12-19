@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 //Author: Gareth Reid
-public class Threading implements Runnable {
+public class Threading implements Runnable  {
     public static ArrayList<Integer> List;
     public static ArrayList<Integer> postList;
 

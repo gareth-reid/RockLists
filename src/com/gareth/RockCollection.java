@@ -98,6 +98,29 @@ public class RockCollection<T extends Comparable<T>> implements Collection<T> {
                 //.collect(Collectors.<T>toList());
     }
 
+    public T second() {
+        List<T> list = (List<T>)_list;
+        return list.get(1);
+    }
+
+    public T secondLast() {
+        List<T> list = (List<T>)_list;
+        return list.get(_list.size() - 2);
+    }
+
+    public List<T> middle() {
+        List<T> list = (List<T>)_list;
+        List<T> middleList = new LinkedList<T>();
+        int middle = _list.size() / 2;
+
+        if (_list.size() % 2 == 0){
+            middleList.add(list.get(middle - 1));
+        }
+
+        middleList.add(list.get(middle));
+        return middleList;
+    }
+
     public T last() {
         List<T> list = (List<T>)_list;
         return list.get(_list.size() - 1);
